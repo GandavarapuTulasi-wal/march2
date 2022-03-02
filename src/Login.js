@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
-import {useState} from 'react'
+import { useState } from 'react'
 const Login = () => {
-    let [message,setMessage]=useState("")
-    let [success,setSucess]=useState("")
-    let [border,setBorder]=useState("todo-user-input")
+    let [message, setMessage] = useState("")
+    let [success, setSucess] = useState("")
+    let [border, setBorder] = useState("todo-user-input")
     let formik = useFormik({
         initialValues: {
             password: "",
@@ -11,21 +11,21 @@ const Login = () => {
         },
         onSubmit(values) {
             let userObject = JSON.parse(localStorage.getItem("userDetails"));
-            localStorage.setItem("loggedIn",0)
+            localStorage.setItem("loggedIn", 0)
             for (let i in userObject) {
-                    if (values.username === userObject[i].username && values.password === userObject[i].password) {
-                        localStorage.setItem("loggeduser", values.username)
-                        localStorage.setItem("loggedIn",1)
-                    }
+                if (values.username === userObject[i].username && values.password === userObject[i].password) {
+                    localStorage.setItem("loggeduser", values.username)
+                    localStorage.setItem("loggedIn", 1)
                 }
-            
-            if(parseInt(localStorage.getItem("loggedIn"))){
+            }
+
+            if (parseInt(localStorage.getItem("loggedIn"))) {
                 setMessage("You are logged in")
                 setSucess("success")
                 setBorder("todo-user-input")
 
             }
-            else{
+            else {
                 setMessage("You are not logged in ")
                 setSucess("failed")
                 setBorder("error")

@@ -1,7 +1,7 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { useFormik } from "formik";
 const Registration = () => {
-    let [success,setSucess]=useState("")
+    let [success, setSucess] = useState("")
     let formik = useFormik({
         initialValues: {
             email: "",
@@ -39,10 +39,10 @@ const Registration = () => {
             if ((formik.values.username.length < 5) || (formik.values.username.length > 20)) {
                 errors.username = "* min 5 characters and max 20 characters"
             }
-            for(let i in userObject){
-                if(userObject[i].username==formik.values.username){
-                    errors.failed="*user already exists"
-                } 
+            for (let i in userObject) {
+                if (userObject[i].username == formik.values.username) {
+                    errors.failed = "*user already exists"
+                }
             }
             return errors
 
@@ -51,21 +51,21 @@ const Registration = () => {
     return (
         <div class="card-container">
             <h1>Registration page</h1>
-        <div class="box">
-            <form onSubmit={formik.handleSubmit} noValidate className="Border">
-                <input type="email" name="email" value={formik.values.email} onChange={formik.handleChange} className="todo-user-input" placeholder="Enter Email" /><br />
-                <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
-                <input type="text" name="username" value={formik.values.username} onChange={formik.handleChange} className="todo-user-input" placeholder="Enter Username" />
-                <div className="text-danger">{formik.errors.username ? formik.errors.username : null}</div>
-                <input type="password" name="password" value={formik.values.password} onChange={formik.handleChange} className="todo-user-input" placeholder="Enter Password" />
-                <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
-                <div className="text">
-                    <button type="submit">Submit</button>
-                </div>
-                <div className="text-danger">{formik.errors.failed ? formik.errors.failed : null}</div>
-            </form>
-        </div>
-        <div className="success">{success}</div>
+            <div class="box">
+                <form onSubmit={formik.handleSubmit} noValidate className="Border">
+                    <input type="email" name="email" value={formik.values.email} onChange={formik.handleChange} className="todo-user-input" placeholder="Enter Email" /><br />
+                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                    <input type="text" name="username" value={formik.values.username} onChange={formik.handleChange} className="todo-user-input" placeholder="Enter Username" />
+                    <div className="text-danger">{formik.errors.username ? formik.errors.username : null}</div>
+                    <input type="password" name="password" value={formik.values.password} onChange={formik.handleChange} className="todo-user-input" placeholder="Enter Password" />
+                    <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
+                    <div className="text">
+                        <button type="submit">Submit</button>
+                    </div>
+                    <div className="text-danger">{formik.errors.failed ? formik.errors.failed : null}</div>
+                </form>
+            </div>
+            <div className="success">{success}</div>
         </div>
     )
 }
