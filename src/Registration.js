@@ -36,12 +36,9 @@ const Registration = () => {
             if ((formik.values.email.length <= 5) || (formik.values.email.length >= 30)) {
                 errors.email = "* should be more than 5 characters and less than 30 characters"
             }
-            if ((formik.values.username.length < 5) || (formik.values.username.length > 20)) {
-                errors.username = "* min 5 characters and max 20 characters"
-            }
             for (let i in userObject) {
                 if (userObject[i].username == formik.values.username) {
-                    errors.failed = "*user already exists"
+                    errors.username = "*username already exists"
                 }
             }
             return errors
@@ -62,7 +59,6 @@ const Registration = () => {
                     <div className="text">
                         <button type="submit">Submit</button>
                     </div>
-                    <div className="text-danger">{formik.errors.failed ? formik.errors.failed : null}</div>
                 </form>
             </div>
             <div className="success">{success}</div>
